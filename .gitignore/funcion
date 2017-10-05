@@ -1,0 +1,80 @@
+#include <iostream>
+#include <stdlib.h>
+#include <ctime>
+using namespace std;
+int menu();
+void unDado(int v[]);
+void dosDados(int v[]);
+void histograma(int tam);
+int dado();
+int main()
+{
+    srand(time(NULL));
+    int v[5]={0};
+    int v2[11]={0};
+    int x;
+    do
+    {
+    x=menu();
+   if(x==1)
+   {
+        unDado(v);
+   }
+   else if(x==2)
+   {
+       dosDados(v2);
+   }
+}while(x!=0);
+}
+int menu()
+{
+    int op;
+    cout<<"1.-Lanzar 1 dado 100 veces: "<<endl;
+    cout<<"2.-Lanzar 2 dados 100 veces: "<<endl;
+    cout<<"0.-Salir: "<<endl;
+    cout<<"Que opcion desea: "<<endl;
+    cin>>op;
+    cout<<endl;
+    return op;
+}
+int dado()
+{
+    return 1+rand()%6;
+}
+void unDado(int v[])
+{
+    int c=0;
+    int a=0;
+    for(int i=1;i<100;i++)
+    {
+        c=dado();
+        v[c-1]++;
+    }
+    for(int k=0;k<=5;k++)
+    {
+        cout<<"Cara "<<k+1<<"= "<<v[k];
+        a=v[k];
+        histograma(a);
+        cout<<endl;
+    }
+}
+void dosDados(int v2[])
+{
+    int a=0;
+    int x=0;
+     for(int i=1;i<100;i+=2){
+        a=dado()+dado();
+        v2[a-1]++;
+     }
+        for(int k=1;k<=11;k++){
+            cout<<"Cara "<<k+1<<"= "<<v2[k];
+             x=v2[k];
+            histograma(x);
+            cout<<endl;
+        }
+}
+void histograma (int tam)
+{
+    for(int i=1;i<=tam;i++)
+        cout<<"*"<<" ";
+}
